@@ -15,7 +15,7 @@ export class OffersService {
     constructor(private http: HttpClient){}
 
     public getOffers():Promise<Offers[]> {
-        return firstValueFrom(this.http.get(`${URL_API}?destaque=true`))
+        return firstValueFrom(this.http.get(`${URL_API}/ofertas?destaque=true`))
             .then((resp : any) => resp)
     }
 
@@ -30,12 +30,20 @@ export class OffersService {
         
     }
 
-    public getHowToUseforId(id: number): Promise<string>{
+    public getHowToUseforId(id: number): Promise<string> {
         return firstValueFrom(this.http.get(`${URL_API}/como-usar?id=${id}`))
         .then((resp: any) => {
             return resp[0].descricao;
         })
-        
+    }
+
+    public getWhereItIsforId(id:number): Promise<string> {
+        return firstValueFrom(this.http.get(`${URL_API}/onde-fica?id=${id}`))
+        .then((resp: any) => {
+            console.log(resp);
+            
+            return resp[0].descricao;
+        })
     }
 
 }

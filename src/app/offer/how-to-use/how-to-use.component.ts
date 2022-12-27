@@ -17,8 +17,7 @@ export class HowToUseComponent implements OnInit {
 
   ngOnInit(): void {
     this.offersService.getHowToUseforId(this.route.parent?.snapshot.params['id'])
-    .then((resp:string) => {this.howToUse = resp} )
-    
+    .then((resp:string) => {this.howToUse = resp } )
   }
 
 }
