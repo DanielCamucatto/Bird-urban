@@ -23,6 +23,12 @@ export class OfferComponent implements OnInit {
     .then((Offers: Offers) => { 
       this.offer = Offers;
     })
-  }
 
+    // this.route.params.subscribe((param: any) =>{
+    //   console.log(param);
+    // },
+    // (erro: any) => console.log(erro), 
+    // () => console.log('processamento concluído!!')
+    // )
+  }
 }
