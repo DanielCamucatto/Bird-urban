@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Offers } from '../shared/offers.model';
 import { OffersService } from '../offers.service';
 import { interval, Observer, Observable } from 'rxjs';
+import { TestScheduler } from 'rxjs/testing';
 
 
 
@@ -33,15 +34,32 @@ export class OfferComponent implements OnInit {
     // () => console.log('processamento concluído!!')
     // )
 
-    let myObservableTest = new Observable((observer: Observer<number>) =>{
+    let myObservableTest = new Observable((observer: Observer<any>) =>{
       observer.next(1)
       observer.next(3)
+      //observer.error('deu ruim a parada aqui grande')
+      observer.complete()
+      
+      
     });
 
-    myObservableTest.subscribe((result: number) => {
-      console.log(result + 30);
+   myObservableTest.subscribe({
+      next(x){
+        console.log(10);
+        
+      }, 
+
+      error(err){
+        console.log('isso é um erro');
+        
+      }, 
+
+      complete() {
+        console.log('done');
+        
+      },
       
-    })
+   })
 
   }
 }
